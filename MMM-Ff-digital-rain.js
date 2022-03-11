@@ -19,7 +19,14 @@ Module.register("MMM-Ff-digital-rain", {
     numberOfDrops: 10,
     numberOfMutations: 10,
     width: null,
-    height: null
+    height: null,
+    events: {
+      DIGITAL_RAIN_DROPS_INCREASE: "DIGITAL_RAIN_DROPS_INCREASE",
+      DIGITAL_RAIN_DROPS_DECREASE: "DIGITAL_RAIN_DROPS_DECREASE",
+      DIGITAL_RAIN_MUTATIONS_INCREASE: "DIGITAL_RAIN_MUTATIONS_INCREASE",
+      DIGITAL_RAIN_MUTATIONS_DECREASE: "DIGITAL_RAIN_MUTATIONS_DECREASE",
+      DIGITAL_RAIN_RESET: "DIGITAL_RAIN_RESET"
+    }
   },
 
   wrapper: null,
@@ -74,23 +81,25 @@ Module.register("MMM-Ff-digital-rain", {
 
   removeElements: function () {
     while (this.matrix.length) this.matrix.pop().element.remove();
+    this.drops.length = 0;
+    this.mutations.length = 0;
   },
 
   setupElements: function () {
     this.tPrevFrame = 0;
     this.removeElements();
 
+    this.columnLength = 1;
     this.addLine();
-    let line = this.matrix[0].element;
 
-    let wrapperBounds = this.wrapper.getBoundingClientRect();
-    let wrapperWidth = wrapperBounds.width;
-    let wrapperHeight = wrapperBounds.height;
+    let wrapperWidth = this.wrapper.offsetWidth;
+    let wrapperHeight = this.wrapper.offsetHeight;
+
+    let line = this.matrix[0].element;
     let lineWidth = line.getBoundingClientRect().width;
 
     // test for number of chars per column
     while (line.scrollHeight <= wrapperHeight) line.innerText += "x";
-
     this.columnLength = line.innerText.length - 1;
     this.fillColumn(this.matrix[0].element);
 
@@ -104,23 +113,36 @@ Module.register("MMM-Ff-digital-rain", {
       }
     }
 
-    // setup mutations
-    for (let i = 0; i < this.config.numberOfMutations; ++i) {
-      this.mutations.push({
-        x: Math.floor(Math.random() * this.matrix.length),
-        y: Math.floor(Math.random() * this.columnLength)
-      });
-    }
+    this.addMutations(this.config.numberOfMutations);
+    this.addDrops(this.config.numberOfDrops);
 
-    // setup drops
-    for (let i = 0; i < this.config.numberOfDrops; ++i) {
+    window.requestAnimationFrame((ts) => this.efh(ts));
+  },
+
+  addDrops: function (num) {
+    for (let i = 0; i < num; ++i) {
       this.drops.push({
         x: this.distributedX(),
         y: -Math.floor(Math.random() * this.columnLength)
       });
     }
+  },
 
-    window.requestAnimationFrame((ts) => this.efh(ts));
+  removeDrops: function (num) {
+    while (this.drops.length && num--) this.drops.pop();
+  },
+
+  addMutations: function (num) {
+    for (let i = 0; i < num; ++i) {
+      this.mutations.push({
+        x: Math.floor(Math.random() * this.matrix.length),
+        y: Math.floor(Math.random() * this.columnLength)
+      });
+    }
+  },
+
+  removeMutations: function (num) {
+    while (this.mutations.length && num--) this.mutations.pop();
   },
 
   efh: function (timestamp) {
@@ -182,11 +204,49 @@ Module.register("MMM-Ff-digital-rain", {
     );
   },
 
+  isAcceptableSender(sender) {
+    if (!sender) return true;
+    const acceptableSender = this.config.events.sender;
+    return (
+      !acceptableSender ||
+      acceptableSender === sender.identifier ||
+      (Array.isArray(acceptableSender) &&
+        acceptableSender.includes(sender.identifier))
+    );
+  },
+
+  notificationReceived: function (notification, payload, sender) {
+    if (!this.isAcceptableSender(sender)) return;
+
+    switch (notification) {
+      case this.config.events.DIGITAL_RAIN_DROPS_INCREASE:
+        if (!this.hidden) this.addDrops(payload ?? 1);
+        break;
+      case this.config.events.DIGITAL_RAIN_DROPS_DECREASE:
+        if (!this.hidden) this.removeDrops(payload ?? 1);
+        break;
+      case this.config.events.DIGITAL_RAIN_MUTATIONS_INCREASE:
+        if (!this.hidden) this.addMutations(payload ?? 1);
+        break;
+      case this.config.events.DIGITAL_RAIN_MUTATIONS_DECREASE:
+        if (!this.hidden) this.removeMutations(payload ?? 1);
+        break;
+      case this.config.events.DIGITAL_RAIN_RESET:
+        if (!this.hidden) this.setupElements();
+        break;
+      default:
+        break;
+    }
+  },
+
   suspend: function () {
     this.removeElements();
+    this.suspended = true;
   },
 
   resume: function () {
+    if (this.suspended === false) return;
+    this.suspended = false;
     if (this.config.fontURL) {
       document.fonts
         .load(

@@ -5,6 +5,18 @@
  * ISC Licensed.
  */
 
+.MMM-Ff-digital-rain {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+}
+
+.MMM-Ff-digital-rain,
+.MMM-Ff-digital-rain .module-content {
+  width: 100%;
+  height: 100%;
+}
+
 .MMM-Ff-digital-rain .digital-rain {
   margin: 0;
   padding: 0;
