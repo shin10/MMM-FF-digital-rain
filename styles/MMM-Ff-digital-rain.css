@@ -1,0 +1,102 @@
+/* Magic Mirror
+ * Module: MMM-Ff-digital-rain
+ *
+ * By Michael Trenkler
+ * ISC Licensed.
+ */
+.MMM-Ff-digital-rain {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.MMM-Ff-digital-rain .module-content {
+  width: 100%;
+  height: 100%;
+}
+
+.MMM-Ff-digital-rain .digital-rain {
+  margin: 0;
+  padding: 0;
+  color: #0a4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  width: 100vw;
+  height: 100vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "MMM-Ff-digital-rain-font", "Courier New", Courier, monospace;
+  font-size: 2rem;
+  /* just a short tag we use for any char */
+}
+
+.MMM-Ff-digital-rain .digital-rain li {
+  margin: 0 auto;
+  padding: 0;
+  display: block;
+  width: 1ch;
+  line-height: 1;
+  height: auto;
+  max-height: 100%;
+  -webkit-writing-mode: vertical-lr;
+      -ms-writing-mode: tb-lr;
+          writing-mode: vertical-lr;
+  text-orientation: upright;
+}
+
+.MMM-Ff-digital-rain .digital-rain i {
+  font-style: normal;
+  font-weight: 400;
+}
+
+.MMM-Ff-digital-rain .digital-rain i:not(.loop) {
+  color: #000;
+}
+
+@-webkit-keyframes colorLoop {
+  0% {
+    color: #fff;
+  }
+  20% {
+    color: inherit;
+  }
+  100% {
+    color: #000;
+  }
+}
+
+@keyframes colorLoop {
+  0% {
+    color: #fff;
+  }
+  20% {
+    color: inherit;
+  }
+  100% {
+    color: #000;
+  }
+}
+
+.MMM-Ff-digital-rain .digital-rain i.loop {
+  -webkit-animation-name: colorLoop;
+          animation-name: colorLoop;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+/*# sourceMappingURL=MMM-Ff-digital-rain.css.map */

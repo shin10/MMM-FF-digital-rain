@@ -1,0 +1,74 @@
+/* Magic Mirror
+ * Module: MMM-Ff-digital-rain
+ *
+ * By Michael Trenkler
+ * ISC Licensed.
+ */
+.MMM-Ff-digital-rain {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .module-content {
+    width: 100%;
+    height: 100%;
+  }
+
+  .digital-rain {
+    margin: 0;
+    padding: 0;
+    color: #0a4;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    align-items: start;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    font-family: "MMM-Ff-digital-rain-font", "Courier New", Courier, monospace;
+    font-size: 2rem;
+
+    li {
+      margin: 0 auto;
+      padding: 0;
+      display: block;
+      width: 1ch;
+      line-height: 1;
+      height: auto;
+      max-height: 100%;
+      writing-mode: vertical-lr;
+      text-orientation: upright;
+    }
+
+    /* just a short tag we use for any char */
+    i {
+      font-style: normal;
+      font-weight: 400;
+
+      &:not(.loop) {
+        color: #000;
+      }
+
+      @keyframes colorLoop {
+        0% {
+          color: #fff;
+        }
+        20% {
+          color: inherit;
+        }
+        100% {
+          color: #000;
+        }
+      }
+
+      &.loop {
+        animation-name: colorLoop;
+        animation-duration: 5s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+}

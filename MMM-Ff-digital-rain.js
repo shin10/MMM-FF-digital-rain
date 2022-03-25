@@ -37,7 +37,7 @@ Module.register("MMM-Ff-digital-rain", {
   tPrevFrame: 0,
 
   getStyles: function () {
-    return ["MMM-Ff-digital-rain.css"];
+    return [this.file("./styles/MMM-Ff-digital-rain.css")];
   },
 
   getDom: function () {
