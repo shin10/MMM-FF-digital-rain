@@ -1,10 +1,10 @@
 /* Magic Mirror
- * Module: MMM-Ff-digital-rain
+ * Module: MMM-FF-digital-rain
  *
  * By Michael Trenkler
  * ISC Licensed.
  */
-.MMM-Ff-digital-rain {
+.MMM-FF-digital-rain {
   position: absolute !important;
   top: 0;
   left: 0;
@@ -27,7 +27,7 @@
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
-    font-family: "MMM-Ff-digital-rain-font", "Courier New", Courier, monospace;
+    font-family: "MMM-FF-digital-rain-font", "Courier New", Courier, monospace;
     font-size: 2rem;
 
     li {

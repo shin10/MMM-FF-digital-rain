@@ -1,26 +1,26 @@
 {
-	"extends": [
-		"eslint:recommended",
-		"plugin:prettier/recommended",
-		"plugin:jsdoc/recommended"
-	],
-	"globals": {
-		"Module": true,
-		"Log": true,
-		"MM": true
-	},
-	"parserOptions": {
-		"sourceType": "module",
-		"ecmaVersion": 2022
-	},
-	"rules": {
-		"no-tabs": 2,
-		"prettier/prettier": [
-			"error",
-			{
-				"useTabs": false,
-				"tabWidth": 2
-			}
-		]
-	}
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:jsdoc/recommended"
+  ],
+  "globals": {
+    "Module": true,
+    "Log": true,
+    "MM": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2022
+  },
+  "rules": {
+    "no-tabs": 2,
+    "prettier/prettier": [
+      "error",
+      {
+        "useTabs": false,
+        "tabWidth": 2
+      }
+    ]
+  }
 }

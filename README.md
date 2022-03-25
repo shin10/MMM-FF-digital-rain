@@ -1,6 +1,6 @@
 ![letters raining on the screen](screenshot.png)
 
-# MMM-Ff-digital-rain
+# MMM-FF-digital-rain
 
 [![ISC License](https://img.shields.io/badge/license-ISC-blue.svg)](https://choosealicense.com/licenses/isc)
 
@@ -16,16 +16,16 @@ The Matrix has you...
 
 Navigate to the modules directory of your MagicMirror² installation and clone this repository.
 
-Optionally download a more suitable font and place it in `~/MagicMirror/modules/MMM-Ff-digital-rain/public/fonts`. Then set the `fontURL` property in your `config` file.
+Optionally download a more suitable font and place it in `~/MagicMirror/modules/MMM-FF-digital-rain/public/fonts`. Then set the `fontURL` property in your `config` file.
 
 https://www.dafont.com/matrix-code-nfi.font
 
 ```sh
-git clone https://github.com/shin10/MMM-Ff-digital-rain.git
+git clone https://github.com/shin10/MMM-FF-digital-rain.git
 
-# (optional) download a font and place it in `~/MagicMirror/modules/MMM-Ff-digital-rain/public/fonts`
+# (optional) download a font and place it in `~/MagicMirror/modules/MMM-FF-digital-rain/public/fonts`
 $(
-  cd MMM-Ff-digital-rain/public/fonts &&
+  cd MMM-FF-digital-rain/public/fonts &&
   wget -O  matrix-code.zip "https://dl.dafont.com/dl/?f=matrix_code_nfi" &&
   unzip matrix-code.zip
 )
@@ -39,13 +39,13 @@ $(
 ...
 modules: [
   {
-      module: 'MMM-Ff-digital-rain',
+      module: 'MMM-FF-digital-rain',
       position: 'fullscreen_below',
       config: {
         numberOfDrops: 15,
         numberOfMutations: 5,
         fontSize: '2em',
-        fontURL: '/modules/MMM-Ff-digital-rain/public/fonts/matrix%20code%20nfi.ttf',
+        fontURL: '/modules/MMM-FF-digital-rain/public/fonts/matrix%20code%20nfi.ttf',
         chars: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%"\'#&_(),.;:?!\|{}<>[]^~',
         color: '#0A4',
         distribution: function (x) { return (Math.random() < .5 ? -.5 : .5) * Math.pow(x, 2) + .5 },

@@ -1,11 +1,11 @@
 /* Magic Mirror
- * Module: MMM-Ff-digital-rain
+ * Module: MMM-FF-digital-rain
  *
  * By Michael Trenkler
  * ISC Licensed.
  */
 
-Module.register("MMM-Ff-digital-rain", {
+Module.register("MMM-FF-digital-rain", {
   defaults: {
     distribution: function (x) {
       return x;
@@ -37,7 +37,7 @@ Module.register("MMM-Ff-digital-rain", {
   tPrevFrame: 0,
 
   getStyles: function () {
-    return [this.file("./styles/MMM-Ff-digital-rain.css")];
+    return [this.file("./styles/MMM-FF-digital-rain.css")];
   },
 
   getDom: function () {
@@ -51,7 +51,7 @@ Module.register("MMM-Ff-digital-rain", {
 
     if (this.config.fontURL) {
       let font = new FontFace(
-        "MMM-Ff-digital-rain-font",
+        "MMM-FF-digital-rain-font",
         `url(${this.config.fontURL})`
       );
       document.fonts.add(font);
@@ -252,7 +252,7 @@ Module.register("MMM-Ff-digital-rain", {
     if (this.config.fontURL) {
       document.fonts
         .load(
-          `${this.config.fontSize} MMM-Ff-digital-rain-font`,
+          `${this.config.fontSize} MMM-FF-digital-rain-font`,
           this.config.chars
         )
         .then(() => this.setupElements());
