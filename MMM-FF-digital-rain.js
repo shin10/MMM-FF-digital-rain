@@ -220,7 +220,7 @@ Module.register("MMM-FF-digital-rain", {
   notificationReceived: function (notification, payload, sender) {
     if (!this.isAcceptableSender(sender)) return;
 
-    this.config.events[notification]?.split(" ").each((e) => {
+    this.config.events[notification]?.split(" ").forEach((e) => {
       switch (e) {
         case "DIGITAL_RAIN_DROPS_INCREASE":
           if (!this.hidden) this.addDrops(payload ?? 1);
