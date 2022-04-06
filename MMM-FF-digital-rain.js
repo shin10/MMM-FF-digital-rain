@@ -220,25 +220,27 @@ Module.register("MMM-FF-digital-rain", {
   notificationReceived: function (notification, payload, sender) {
     if (!this.isAcceptableSender(sender)) return;
 
-    switch (notification) {
-      case this.config.events.DIGITAL_RAIN_DROPS_INCREASE:
-        if (!this.hidden) this.addDrops(payload ?? 1);
-        break;
-      case this.config.events.DIGITAL_RAIN_DROPS_DECREASE:
-        if (!this.hidden) this.removeDrops(payload ?? 1);
-        break;
-      case this.config.events.DIGITAL_RAIN_MUTATIONS_INCREASE:
-        if (!this.hidden) this.addMutations(payload ?? 1);
-        break;
-      case this.config.events.DIGITAL_RAIN_MUTATIONS_DECREASE:
-        if (!this.hidden) this.removeMutations(payload ?? 1);
-        break;
-      case this.config.events.DIGITAL_RAIN_RESET:
-        if (!this.hidden) this.setupElements();
-        break;
-      default:
-        break;
-    }
+    this.config.events[notification]?.split(" ").each((e) => {
+      switch (e) {
+        case "DIGITAL_RAIN_DROPS_INCREASE":
+          if (!this.hidden) this.addDrops(payload ?? 1);
+          break;
+        case "DIGITAL_RAIN_DROPS_DECREASE":
+          if (!this.hidden) this.removeDrops(payload ?? 1);
+          break;
+        case "DIGITAL_RAIN_MUTATIONS_INCREASE":
+          if (!this.hidden) this.addMutations(payload ?? 1);
+          break;
+        case "DIGITAL_RAIN_MUTATIONS_DECREASE":
+          if (!this.hidden) this.removeMutations(payload ?? 1);
+          break;
+        case "DIGITAL_RAIN_RESET":
+          if (!this.hidden) this.setupElements();
+          break;
+        default:
+          break;
+      }
+    });
   },
 
   suspend: function () {
