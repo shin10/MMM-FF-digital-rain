@@ -60,7 +60,7 @@ modules: [
 
 | **Option**          | **Description**                                                                                                                               |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fps`               | The maximum number of frames per second. rayscale.                                                                                            |
+| `fps`               | The maximum number of frames per second.                                                                                                      |
 | `numberOfDrops`     | The number of drops running down your screen.                                                                                                 |
 | `numberOfMutations` | The number of mutations changing on screen characters randomly.                                                                               |
 | `fontSize`          | Any valid CSS unit, like `16px`, `2em` etc.                                                                                                   |
